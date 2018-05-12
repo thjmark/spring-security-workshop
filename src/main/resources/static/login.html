@@ -1,0 +1,29 @@
+<!Doctype html>
+<html>
+    <head>
+		<meta charset="UTF-8"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            function goWithUserName(){
+                var username=$('#username')[0].value;
+                var address= 'http://localhost:8080/index.html?username='+username.toString();
+                
+                location.href = address; 
+                
+            }
+        </script>
+    </head>
+    <body>
+        <form >
+            <p> 
+                Name:
+                <input id="username">
+            </p>
+            <p> 
+                Passwort:
+                <input id="passwort">
+            </p>
+			<button type="button" onclick="javascript:goWithUserName()">Submit</button>
+        </form>
+    </body>
+</html>

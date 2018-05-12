@@ -1,0 +1,28 @@
+<!Doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+          var infoData={};
+          var name = window.location.href.split('=')[1];
+          $.get('api/info?username='+name,function(data){
+              infoData = data;
+              $('.main_text').text(data ? data.text:'');
+              $.get(infoData.nextUrl,function(data2){
+            	  var element = $('second_text');
+            	  data2.forEach(function(entry){
+            		 element = element.append('<p>' + entry + '</p>'); 
+            	  });
+                $('.second_text').text(data2);
+              });
+          });
+        </script>
+    </head>
+    <body>
+        <h1>
+            Freds Pizza und Hubschrauberreparaturen
+        </h1>
+        <p class="main_text"></p>
+        <p class="second_text"></p>
+    </body>
+</html>
