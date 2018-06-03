@@ -1,6 +1,8 @@
 Authetification:
 -Basic 
--Mit login Form
+(-Mit login Form)
+
+Userdetails service
 
 Authorization
 -verschiedene userroles
@@ -9,5 +11,3 @@ Authorization
 
 
 Passwort kodierung
-TODO:
-realistische machen

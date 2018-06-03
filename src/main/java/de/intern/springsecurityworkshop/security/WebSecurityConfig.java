@@ -14,7 +14,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic().and().logout();
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
 	}
 
 	// Plain text Passwörter sind nur für Demozwecke ok
