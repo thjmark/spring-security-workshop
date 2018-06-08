@@ -8,13 +8,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+		http.logout().logoutUrl("/myLogout")
+		.logoutSuccessUrl("/login")
+		.logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler())
+		.invalidateHttpSession(true)
+		.addLogoutHandler(new SecurityContextLogoutHandler())
+		.and()
+		.csrf().disable()
+		.authorizeRequests()
+		.anyRequest()
+		.authenticated()
+		.and()
+		.formLogin()
+		.and()
+		.httpBasic();
 	}
 
 	// Plain text Passwörter sind nur für Demozwecke ok
