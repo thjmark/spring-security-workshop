@@ -9,5 +9,9 @@ Authorization
 -User details service (in Memory)
 -userprofil abfragen
 
-
-Passwort kodierung
+Weiter Themen (was passiert eigentlich mit dem session cockie )
+logout
+Passwort kodierung und UserDetailService
+Https?
+Session management
+verschiendene verschlüsselungen..
