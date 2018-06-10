@@ -1,6 +1,7 @@
 <!Doctype html>
 <html>
     <head>
+    	<meta charset="utf-8"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
           var infoData={};
@@ -16,8 +17,22 @@
                 $('.second_text').text(data2);
               });
           });
-          
+          function logout(){
+        	 var entries=document.cookie.split('=');
+        	 var header={};
+        	 header[entries[0]]=entries[1];
+        	 console.log(header);
+        	 $.post({
+        		 url:'/myLogout',
+        		 headers:header
+        	 }).done((function(response){
+        		 console.log(response);
+        	 }))
+          }
         </script>
+          <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     </head>
     <body>
         <h1>
@@ -26,7 +41,9 @@
         <p class="main_text"></p>
         <p class="second_text"></p>
  		<form method="post" action="/myLogout" id="form-logout">
+  		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   		  <input type="submit" value="Log out"/>         
 		</form>
+		<button onlick="logout()">Show</button>
     </body>
 </html>

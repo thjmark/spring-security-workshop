@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -22,7 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.invalidateHttpSession(true)
 		.addLogoutHandler(new SecurityContextLogoutHandler())
 		.and()
-		.csrf().disable()
+		.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+		.and()
 		.authorizeRequests()
 		.anyRequest()
 		.authenticated()
